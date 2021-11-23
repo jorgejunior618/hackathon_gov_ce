@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:transparencia_gov_ce/styles/material_styles.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
+
+  const MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
