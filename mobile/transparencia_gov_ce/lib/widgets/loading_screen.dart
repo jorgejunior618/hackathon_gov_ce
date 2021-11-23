@@ -4,7 +4,11 @@ import 'package:transparencia_gov_ce/widgets/typography.dart';
 class LoadingScreen extends StatelessWidget {
   final String message;
 
-  const LoadingScreen({this.message: 'Carregando ...'});
+  const LoadingScreen({
+    Key? key,
+    this.message = 'Carregando ...',
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -14,7 +18,7 @@ class LoadingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            CircularProgressIndicator(),
+            const CircularProgressIndicator(),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),

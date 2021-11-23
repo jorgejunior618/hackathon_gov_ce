@@ -85,14 +85,14 @@ class Button extends StatelessWidget {
 }
 
 class SearchButton extends StatelessWidget {
+  final Icon icon;
+  final Function() onTap;
+
   const SearchButton({
     Key? key,
     this.icon = const Icon(Icons.search),
     required this.onTap,
   }) : super(key: key);
-
-  final Icon icon;
-  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +121,12 @@ class SearchButton extends StatelessWidget {
 }
 
 class EditButtonStyled extends StatelessWidget {
+  final Color textColor;
+
   const EditButtonStyled({
     Key? key,
     this.textColor = MaterialColors.muted,
   }) : super(key: key);
-
-  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -156,12 +156,12 @@ class EditButtonStyled extends StatelessWidget {
 }
 
 class EmailFloatingButton extends StatelessWidget {
+  final Function() onTap;
+
   const EmailFloatingButton({
     Key? key,
     required this.onTap,
   }) : super(key: key);
-
-  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {

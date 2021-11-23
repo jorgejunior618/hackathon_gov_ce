@@ -8,10 +8,10 @@ class SimpleText extends StatelessWidget {
 
   const SimpleText(
     this._text, {
-    this.textSize: 16.0,
-    this.textAlign: TextAlign.left,
-    this.textColor: Colors.black,
-    Key key,
+    Key? key,
+    this.textSize = 16.0,
+    this.textAlign = TextAlign.left,
+    this.textColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -29,18 +29,18 @@ class SimpleText extends StatelessWidget {
 }
 
 class SimpleTextBold extends StatelessWidget {
-  const SimpleTextBold(
-    this._text, {
-    Key key,
-    this.textSize: 16.0,
-    this.textAlign: TextAlign.left,
-    this.textColor: Colors.black,
-  }) : super(key: key);
-
   final String _text;
   final double textSize;
   final TextAlign textAlign;
   final Color textColor;
+
+  const SimpleTextBold(
+    this._text, {
+    Key? key,
+    this.textSize: 16.0,
+    this.textAlign: TextAlign.left,
+    this.textColor: Colors.black,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

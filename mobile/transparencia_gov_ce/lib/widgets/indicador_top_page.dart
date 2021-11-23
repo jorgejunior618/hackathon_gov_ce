@@ -37,10 +37,11 @@ class BarraProgresso extends StatelessWidget {
   /// a Inicial é etapa 1, e a Final é a etapa 3
   final int etapaAtual;
 
-  BarraProgresso(this.totalEtapas, this.etapaAtual) {
-    if (etapaAtual > totalEtapas)
-      throw Exception('A etapa atual não pode ser maior que o total de etapas');
-  }
+  const BarraProgresso(
+    this.totalEtapas,
+    this.etapaAtual, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

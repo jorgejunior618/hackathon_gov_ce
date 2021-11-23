@@ -1,15 +1,15 @@
-import 'package:easy_mask/easy_mask.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:transparencia_gov_ce/styles/material_styles.dart';
-import 'package:transparencia_gov_ce/widgets/typography.dart';
+import "package:easy_mask/easy_mask.dart";
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:transparencia_gov_ce/styles/material_styles.dart";
+import "package:transparencia_gov_ce/widgets/typography.dart";
 
 class Input extends StatelessWidget {
-  /// 9: r'[0-9]
+  /// 9: r"[0-9]
   ///
-  /// A: r'[a-zA-Z]
+  /// A: r"[a-zA-Z]
   ///
-  /// N: r'[0-9a-zA-Z]
+  /// N: r"[0-9a-zA-Z]
   ///
   /// X: qualquer caractere
   ///
@@ -76,21 +76,15 @@ class Input extends StatelessWidget {
     this.textInputAction = TextInputAction.done,
     this.label,
     this.readOnly = false,
-  }) : super(key:key);
+  }) : super(key: key);
 
   double get marginBottom {
-    if(outlineBorder){
-      return prefixIcon != null || suffixIcon != null
-                    ? 15
-                    : 20;
+    if (outlineBorder) {
+      return prefixIcon != null || suffixIcon != null ? 15 : 20;
     } else if (prefixIcon != null || suffixIcon != null) {
-      return label != null
-        ? 14
-        : 9;
+      return label != null ? 14 : 9;
     } else {
-      return label != null
-        ? 13
-        : 15;
+      return label != null ? 13 : 15;
     }
   }
 
@@ -109,10 +103,10 @@ class Input extends StatelessWidget {
         readOnly: readOnly,
         onEditingComplete: onEditingComplete,
         textInputAction: textInputAction,
-        validator: validator
-            ?? (value) {
-                return null;
-              },
+        validator: validator ??
+            (value) {
+              return null;
+            },
         obscureText: password,
         enabled: !disabled,
         cursorColor: cursorColor,
@@ -144,10 +138,7 @@ class Input extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.red, width: 1.5),
                 ),
           labelText: label,
-          contentPadding: const EdgeInsets.only(
-            left: 16,
-            bottom: 15
-          ),
+          contentPadding: const EdgeInsets.only(left: 16, bottom: 15),
           filled: filled,
           fillColor: fillColor,
           labelStyle: TextStyle(
@@ -217,11 +208,11 @@ class InputDate extends StatelessWidget {
 
           DateTime? data = await showDatePicker(
             context: context,
-            helpText: 'Selecionar $label',
+            helpText: "Selecionar $label",
             initialDate: dataInicial,
             firstDate: DateTime(1900),
             lastDate: dataMaxima,
-            locale: const Locale('pt', 'BR'),
+            locale: const Locale("pt", "BR"),
           );
 
           if (data != null) setController(data);
@@ -235,7 +226,7 @@ class InputDate extends StatelessWidget {
           validator: obrigatorio
               ? (value) {
                   if (value == null || value.length != 10) {
-                    return 'Por favor, preencher este campo';
+                    return "Por favor, preencher este campo";
                   }
                   return null;
                 }
@@ -258,15 +249,15 @@ class InputSenha extends StatefulWidget {
 
   const InputSenha(
     this.controller, {
-      Key? key,
+    Key? key,
     this.onEditingComplete,
-    this.label = '',
-    this.placeholder = '',
+    this.label = "",
+    this.placeholder = "",
     this.confirmacao = false,
     this.senhaComparacao = "",
     this.onTap,
     this.onChanged,
-  }):super(key:key);
+  }) : super(key: key);
 
   @override
   _InputSenhaState createState() => _InputSenhaState();
@@ -292,7 +283,7 @@ class _InputSenhaState extends State<InputSenha> {
         },
         child: Icon(
           _senhaVisivel ? Icons.visibility_off : Icons.visibility,
-          semanticLabel: '${_senhaVisivel ? 'Visualizar' : 'Esconder'} senha',
+          semanticLabel: "${_senhaVisivel ? "Visualizar" : "Esconder"} senha",
         ),
       ),
       textInputAction: TextInputAction.next,
@@ -300,28 +291,28 @@ class _InputSenhaState extends State<InputSenha> {
       keyboardType: TextInputType.text,
       controller: widget.controller,
       validator: (value) {
-        // print('   - NOVA SENHA: ${widget.senhaComparacao}');
-        // print('   - CONFIRMAÇÂO: ${widget.controller.text}');
+        // print("   - NOVA SENHA: ${widget.senhaComparacao}");
+        // print("   - CONFIRMAÇÂO: ${widget.controller.text}");
         if (!widget.confirmacao) {
           if (value == null || value.isEmpty) {
-            return 'Por favor, preencher este campo';
+            return "Por favor, preencher este campo";
           }
           if (value.length < 6 || value.length > 8) {
-            return 'A senha deve conter de 6 a 8 caracteres';
+            return "A senha deve conter de 6 a 8 caracteres";
           }
-          if (!(value.contains(RegExp(r'[A-Z]')) &&
-              value.contains(RegExp(r'[0-9]')) &&
-              value.contains(RegExp(r'[a-z]')))) {
-            return 'Utilize maiúsculas, minúsculas e números';
+          if (!(value.contains(RegExp(r"[A-Z]")) &&
+              value.contains(RegExp(r"[0-9]")) &&
+              value.contains(RegExp(r"[a-z]")))) {
+            return "Utilize maiúsculas, minúsculas e números";
           }
           return null;
         } else {
           if (value == null || value.isEmpty) {
-            return 'Por favor, preencher este campo';
+            return "Por favor, preencher este campo";
           }
-          print('Value: $value,\n Comp: ${widget.senhaComparacao}');
+          print("Value: $value,\n Comp: ${widget.senhaComparacao}");
           if (value.compareTo(widget.senhaComparacao) != 0) {
-            return 'Confirmação diferente da senha';
+            return "Confirmação diferente da senha";
           }
           return null;
         }
@@ -331,27 +322,12 @@ class _InputSenhaState extends State<InputSenha> {
 }
 
 class SelectDropDown extends StatelessWidget {
-  const SelectDropDown({
-    required this.controller,
-    required this.list,
-    required this.onChange,
-    this.hintText: '',
-    this.margin,
-    this.desabilitado: false,
-    this.unicoNaLinha: true,
-    this.onTap,
-    this.icon: const Icon(Icons.keyboard_arrow_right),
-    this.borderOutlined: false,
-    this.underline: true,
-    this.mostrarLabel: false,
-  });
-
   final String controller;
   final String hintText;
   final List list;
-  final Function(String newValue) onChange;
-  final Function onTap;
-  final EdgeInsetsGeometry margin;
+  final Function(String? newValue)? onChange;
+  final Function()? onTap;
+  final EdgeInsetsGeometry? margin;
   final bool desabilitado;
   final bool unicoNaLinha;
   final bool mostrarLabel;
@@ -361,10 +337,26 @@ class SelectDropDown extends StatelessWidget {
   ///informe somente se optar pelo [borderOutlineD: false]
   final bool underline;
 
+  const SelectDropDown({
+    Key? key,
+    required this.controller,
+    required this.list,
+    required this.onChange,
+    this.hintText = "",
+    this.margin,
+    this.desabilitado = false,
+    this.unicoNaLinha = true,
+    this.onTap,
+    this.icon = const Icon(Icons.keyboard_arrow_right),
+    this.borderOutlined = false,
+    this.underline = true,
+    this.mostrarLabel = false,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? EdgeInsets.only(top: 8, bottom: 4),
+      margin: margin ?? const EdgeInsets.only(top: 8, bottom: 4),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: desabilitado ? Colors.grey.withOpacity(0.2) : Colors.transparent,
@@ -372,7 +364,7 @@ class SelectDropDown extends StatelessWidget {
         border: borderOutlined
             ? Border.all(color: MaterialColors.muted)
             : underline
-                ? Border(bottom: BorderSide())
+                ? const Border(bottom: BorderSide())
                 : null,
       ),
       child: DropdownButton<String>(
@@ -387,7 +379,7 @@ class SelectDropDown extends StatelessWidget {
           child: Container(
             alignment: Alignment.centerLeft,
             child: Text(
-              hintText ?? '',
+              hintText,
               style: TextStyle(
                 color: desabilitado
                     ? MaterialColors.muted
@@ -399,53 +391,50 @@ class SelectDropDown extends StatelessWidget {
         isExpanded: unicoNaLinha,
         underline: Container(
           height: 0,
-          padding: const EdgeInsets.zero,
-          margin: const EdgeInsets.zero,
+          padding: const EdgeInsets.all(0),
+          margin: const EdgeInsets.all(0),
         ),
         onChanged: onChange,
         selectedItemBuilder: (BuildContext context) {
-          return list != null
-              ? list
-                  .map((value) =>
-                      value is Map ? value['nome'] ?? value['Nome'] : value)
-                  .map<Widget>((item) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (mostrarLabel)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 4.0),
-                            child: SimpleText(
-                              hintText,
-                              textSize: 12,
-                              textColor: MaterialColors.muted,
-                            ),
-                          ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          margin:
-                              EdgeInsets.only(bottom: mostrarLabel ? 8.0 : 0.0),
-                          child: SimpleTextBold(
-                            item,
-                            textColor: MaterialColors.primary,
-                          ),
-                        ),
-                      ],
+          return list
+              .map((value) =>
+                  value is Map ? value["nome"] ?? value["Nome"] : value)
+              .map<Widget>((item) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (mostrarLabel)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4.0),
+                      child: SimpleText(
+                        hintText,
+                        textSize: 12,
+                        textColor: MaterialColors.muted,
+                      ),
                     ),
-                  );
-                }).toList()
-              : [];
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(bottom: mostrarLabel ? 8.0 : 0.0),
+                    child: SimpleTextBold(
+                      item,
+                      textColor: MaterialColors.primary,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList();
         },
         items: list != null
             ? list
                 .map((value) => value is Map
-                    ? (value['nome'] ?? value['Nome']) +
-                        '--${value['id'] != null ? value['id'] : value['ID'] != null ? value['ID'] : value['Id']}'
-                    : value + '--0')
+                    ? (value["nome"] ?? value["Nome"]) +
+                        "--${value["id"] != null ? value["id"] : value["ID"] != null ? value["ID"] : value["Id"]}"
+                    : value + "--0")
                 .map<DropdownMenuItem<String>>((value) {
                 return DropdownMenuItem<String>(
                   value: value,
@@ -460,7 +449,7 @@ class SelectDropDown extends StatelessWidget {
                       ),
                     ),
                     child: SimpleText(
-                      value.split('--')[0],
+                      value.split("--")[0],
                     ),
                   ),
                 );
