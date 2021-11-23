@@ -37,9 +37,9 @@ class SimpleTextBold extends StatelessWidget {
   const SimpleTextBold(
     this._text, {
     Key? key,
-    this.textSize: 16.0,
-    this.textAlign: TextAlign.left,
-    this.textColor: Colors.black,
+    this.textSize = 16.0,
+    this.textAlign = TextAlign.left,
+    this.textColor = Colors.black,
   }) : super(key: key);
 
   @override

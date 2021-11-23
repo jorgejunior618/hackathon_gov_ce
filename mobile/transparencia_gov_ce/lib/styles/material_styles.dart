@@ -13,4 +13,6 @@ class MaterialColors {
   static const Color socialFacebook = Color.fromRGBO(59, 89, 152, 1.0);
   static const Color socialTwitter = Color.fromRGBO(91, 192, 222, 1.0);
   static const Color warning = Color.fromRGBO(255, 152, 0, 1.0);
+  static const Color whatsApp = Color.fromRGBO(34, 152, 23, 1.0);
+  static const Color telegram = Color.fromRGBO(42, 151, 229, 1.0);
 }
