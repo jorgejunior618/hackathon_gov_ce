@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:transparencia_gov_ce/styles/material_styles.dart';
 
 class MyHomePage extends StatefulWidget {
-  final String title;
-
   const MyHomePage({
     Key? key,
-    required this.title,
   }) : super(key: key);
 
   @override
@@ -17,9 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    Navigator.of(context).pushNamed("erro");
   }
 
   @override
