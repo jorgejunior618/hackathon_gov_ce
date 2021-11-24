@@ -53,10 +53,10 @@ class _HomeState extends State<Home> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: MaterialColors.primary,
-        selectedFontSize: 20,
-        selectedIconTheme: const IconThemeData(size: 36),
-        unselectedFontSize: 16,
-        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 16,
+        selectedIconTheme: const IconThemeData(size: 28),
+        unselectedFontSize: 12,
+        unselectedIconTheme: const IconThemeData(size: 20),
         onTap: _onItemTapped,
       ),
     );
@@ -80,7 +80,7 @@ class Noticias extends StatelessWidget {
         SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Padding(
-            padding: const EdgeInsets.only(top: 135.0),
+            padding: const EdgeInsets.only(top: 110.0),
             child: Column(
               children: [
                 for (int i = 0; i < 7; i++)
@@ -94,39 +94,88 @@ class Noticias extends StatelessWidget {
         ),
         Container(
           color: MaterialColors.bgColorScreen,
-          height: 110,
+          height: 100,
           width: double.maxFinite,
           child: Padding(
             padding: EdgeInsets.only(
               left: 12.0,
               right: 12.0,
-              top: MediaQuery.of(context).padding.top,
+              top: MediaQuery.of(context).padding.top + 12,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Material(
                   type: MaterialType.button,
+                  elevation: 2.0,
                   color: MaterialColors.whatsApp,
-                  child: SizedBox(
-                    width: 140,
-                    height: 40,
+                  child: InkWell(
+                    onTap: () {},
+                    child: SizedBox(
+                      width: 140,
+                      height: 40,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            SimpleText("Noticia via ", textColor: Colors.white),
+                            SizedBox(width: 10),
+                            FaIcon(
+                              FontAwesomeIcons.whatsapp,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 Material(
                   type: MaterialType.button,
+                  elevation: 2.0,
                   color: MaterialColors.telegram,
-                  child: SizedBox(
-                    width: 140,
-                    height: 40,
+                  child: InkWell(
+                    onTap: () {},
+                    child: SizedBox(
+                      width: 140,
+                      height: 40,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            SimpleText("Noticia via ", textColor: Colors.white),
+                            SizedBox(width: 10),
+                            FaIcon(
+                              FontAwesomeIcons.telegram,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 Material(
                   type: MaterialType.transparency,
-                  child: Icon(
-                    Icons.notifications_on_outlined,
-                    size: 32,
-                    color: Colors.white,
+                  child: InkWell(
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                        color: Colors.white.withOpacity(0.1),
+                      ),
+                      child: const Icon(
+                        Icons.notifications_on_outlined,
+                        size: 32,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -153,7 +202,7 @@ class CardNoticia extends StatelessWidget {
     return Material(
       type: MaterialType.card,
       borderRadius: const BorderRadius.all(Radius.circular(6)),
-      elevation: 4.0,
+      elevation: 2.0,
       child: SizedBox(
         width: double.maxFinite,
         child: Padding(
