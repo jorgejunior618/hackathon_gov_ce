@@ -17,112 +17,134 @@ class Noticias extends StatelessWidget {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 110.0),
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+              left: 14,
+              right: 14,
+              top: MediaQuery.of(context).padding.top + 85,
+            ),
             child: Column(
               children: [
                 for (int i = 0; i < 7; i++)
                   const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
+                    padding: EdgeInsets.only(bottom: 16.0),
                     child: CardNoticia(tag: tag, titulo: titulo),
                   ),
               ],
             ),
           ),
         ),
-        Container(
-          color: MaterialColors.bgColorScreen,
-          height: 100,
-          width: double.maxFinite,
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: 12.0,
-              right: 12.0,
-              top: MediaQuery.of(context).padding.top + 12,
+        const BarraNotificacoes(),
+      ],
+    );
+  }
+}
+
+class BarraNotificacoes extends StatelessWidget {
+  const BarraNotificacoes({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: MaterialColors.bgColorScreen,
+      height: 100,
+      width: double.maxFinite,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 12.0,
+          right: 12.0,
+          top: MediaQuery.of(context).padding.top + 18,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CardTipoNotificacao(
+              cardColor: MaterialColors.whatsApp,
+              icon: const FaIcon(
+                FontAwesomeIcons.whatsapp,
+                color: Colors.white,
+              ),
+              onTap: () {},
             ),
+            CardTipoNotificacao(
+              cardColor: MaterialColors.telegram,
+              icon: const FaIcon(
+                FontAwesomeIcons.telegram,
+                color: Colors.white,
+              ),
+              onTap: () {},
+            ),
+            Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                borderRadius: const BorderRadius.all(Radius.circular(50)),
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                    color: Colors.white.withOpacity(0.1),
+                  ),
+                  child: const Icon(
+                    Icons.notifications_on_outlined,
+                    size: 32,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CardTipoNotificacao extends StatelessWidget {
+  const CardTipoNotificacao({
+    Key? key,
+    this.cardColor = Colors.blue,
+    this.icon,
+    required this.onTap,
+  }) : super(key: key);
+
+  final Color cardColor;
+  final FaIcon? icon;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.button,
+      elevation: 2.0,
+      color: cardColor,
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox(
+          width: 140,
+          height: 40,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Material(
-                  type: MaterialType.button,
-                  elevation: 2.0,
-                  color: MaterialColors.whatsApp,
-                  child: InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      width: 140,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            SimpleText("Noticia via ", textColor: Colors.white),
-                            SizedBox(width: 10),
-                            FaIcon(
-                              FontAwesomeIcons.whatsapp,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                const SimpleText("Noticia via ", textColor: Colors.white),
+                if (icon != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: icon,
                   ),
-                ),
-                Material(
-                  type: MaterialType.button,
-                  elevation: 2.0,
-                  color: MaterialColors.telegram,
-                  child: InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      width: 140,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            SimpleText("Noticia via ", textColor: Colors.white),
-                            SizedBox(width: 10),
-                            FaIcon(
-                              FontAwesomeIcons.telegram,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Material(
-                  type: MaterialType.transparency,
-                  child: InkWell(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(50),
-                        ),
-                        color: Colors.white.withOpacity(0.1),
-                      ),
-                      child: const Icon(
-                        Icons.notifications_on_outlined,
-                        size: 32,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

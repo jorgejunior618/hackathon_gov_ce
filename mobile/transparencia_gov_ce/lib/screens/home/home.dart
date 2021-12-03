@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:transparencia_gov_ce/screens/home/menu_selecao_dados.dart';
 import 'package:transparencia_gov_ce/screens/home/noticias.dart';
 import 'package:transparencia_gov_ce/styles/material_styles.dart';
-import 'package:transparencia_gov_ce/widgets/typography.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -19,11 +19,7 @@ class _HomeState extends State<Home> {
 
   static const List<Widget> _abas = <Widget>[
     Noticias(),
-    SimpleText(
-      'Index 1: Business',
-      textColor: Colors.white,
-      textSize: 36.0,
-    ),
+    MenuDados(),
   ];
 
   void _selecionarAba(int index) {
