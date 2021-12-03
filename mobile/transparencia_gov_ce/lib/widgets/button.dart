@@ -2,19 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:transparencia_gov_ce/styles/material_styles.dart';
 
 class Button extends StatelessWidget {
-  final String title;
-  final Function() onTap;
-  final bool disabled;
-
-  /// Set this field [True] if it should to
-  /// occoup all the Container Horizontal Space
-  final bool allScreen;
-  final bool withBackground;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
-  final Icon? icon;
-  final double? width;
-
   const Button({
     Key? key,
     this.title = "",
@@ -29,6 +16,19 @@ class Button extends StatelessWidget {
     this.icon,
     this.width,
   }) : super(key: key);
+
+  final String title;
+  final Function() onTap;
+  final bool disabled;
+
+  /// Set this field [True] if it should to
+  /// occoup all the Container Horizontal Space
+  final bool allScreen;
+  final bool withBackground;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
+  final Icon? icon;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class Button extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (title != null)
+                if (title.isNotEmpty)
                   Text(
                     title,
                     style: TextStyle(
@@ -85,14 +85,14 @@ class Button extends StatelessWidget {
 }
 
 class SearchButton extends StatelessWidget {
-  final Icon icon;
-  final Function() onTap;
-
   const SearchButton({
     Key? key,
     this.icon = const Icon(Icons.search),
     required this.onTap,
   }) : super(key: key);
+
+  final Icon icon;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +121,12 @@ class SearchButton extends StatelessWidget {
 }
 
 class EditButtonStyled extends StatelessWidget {
-  final Color textColor;
-
   const EditButtonStyled({
     Key? key,
     this.textColor = MaterialColors.muted,
   }) : super(key: key);
+
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -156,12 +156,12 @@ class EditButtonStyled extends StatelessWidget {
 }
 
 class EmailFloatingButton extends StatelessWidget {
-  final Function() onTap;
-
   const EmailFloatingButton({
     Key? key,
     required this.onTap,
   }) : super(key: key);
+
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {

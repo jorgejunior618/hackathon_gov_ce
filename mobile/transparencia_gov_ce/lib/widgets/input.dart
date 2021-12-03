@@ -1,10 +1,39 @@
-import "package:easy_mask/easy_mask.dart";
+import 'package:easy_mask/easy_mask.dart';
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:transparencia_gov_ce/styles/material_styles.dart";
 import "package:transparencia_gov_ce/widgets/typography.dart";
 
 class Input extends StatelessWidget {
+  const Input({
+    Key? key,
+    this.placeholder = "",
+    this.suffixIcon,
+    this.prefixIcon,
+    this.disabled = false,
+    this.password = false,
+    this.onTap,
+    this.filled,
+    this.fillColor,
+    this.textColor = Colors.black,
+    this.enabledBorderColor = MaterialColors.muted,
+    this.focusedBorderColor = MaterialColors.primary,
+    this.cursorColor = MaterialColors.muted,
+    this.hintTextColor = MaterialColors.muted,
+    this.keyboardType = TextInputType.text,
+    this.onChanged,
+    this.outlineBorder = false,
+    this.autofocus = false,
+    this.borderColor = MaterialColors.border,
+    this.inputMask,
+    required this.controller,
+    this.validator,
+    this.onEditingComplete,
+    this.textInputAction = TextInputAction.done,
+    this.label,
+    this.readOnly = false,
+  }) : super(key: key);
+
   /// 9: r"[0-9]
   ///
   /// A: r"[a-zA-Z]
@@ -48,35 +77,6 @@ class Input extends StatelessWidget {
   final TextInputType keyboardType;
   final String? label;
   final bool readOnly;
-
-  const Input({
-    Key? key,
-    this.placeholder = "",
-    this.suffixIcon,
-    this.prefixIcon,
-    this.disabled = false,
-    this.password = false,
-    this.onTap,
-    this.filled,
-    this.fillColor,
-    this.textColor = Colors.black,
-    this.enabledBorderColor = MaterialColors.muted,
-    this.focusedBorderColor = MaterialColors.primary,
-    this.cursorColor = MaterialColors.muted,
-    this.hintTextColor = MaterialColors.muted,
-    this.keyboardType = TextInputType.text,
-    this.onChanged,
-    this.outlineBorder = false,
-    this.autofocus = false,
-    this.borderColor = MaterialColors.border,
-    this.inputMask,
-    required this.controller,
-    this.validator,
-    this.onEditingComplete,
-    this.textInputAction = TextInputAction.done,
-    this.label,
-    this.readOnly = false,
-  }) : super(key: key);
 
   double get marginBottom {
     if (outlineBorder) {
@@ -178,14 +178,6 @@ class Input extends StatelessWidget {
 }
 
 class InputDate extends StatelessWidget {
-  final TextEditingController controller;
-  final String label;
-  final bool obrigatorio;
-  final DateTime dataInicial;
-  final DateTime dataMaxima;
-  final Function(DateTime data) setController;
-  final Function()? onTap;
-
   const InputDate({
     Key? key,
     required this.controller,
@@ -193,9 +185,17 @@ class InputDate extends StatelessWidget {
     this.label = "",
     required this.dataInicial,
     required this.dataMaxima,
-    this.obrigatorio: false,
+    this.obrigatorio = false,
     this.onTap,
   }) : super(key: key);
+
+  final TextEditingController controller;
+  final String label;
+  final bool obrigatorio;
+  final DateTime dataInicial;
+  final DateTime dataMaxima;
+  final Function(DateTime data) setController;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -238,15 +238,6 @@ class InputDate extends StatelessWidget {
 }
 
 class InputSenha extends StatefulWidget {
-  final TextEditingController controller;
-  final Function()? onEditingComplete;
-  final Function()? onTap;
-  final Function(String value)? onChanged;
-  final String label;
-  final String placeholder;
-  final bool confirmacao;
-  final String senhaComparacao;
-
   const InputSenha(
     this.controller, {
     Key? key,
@@ -258,6 +249,15 @@ class InputSenha extends StatefulWidget {
     this.onTap,
     this.onChanged,
   }) : super(key: key);
+
+  final TextEditingController controller;
+  final Function()? onEditingComplete;
+  final Function()? onTap;
+  final Function(String value)? onChanged;
+  final String label;
+  final String placeholder;
+  final bool confirmacao;
+  final String senhaComparacao;
 
   @override
   _InputSenhaState createState() => _InputSenhaState();
@@ -310,7 +310,6 @@ class _InputSenhaState extends State<InputSenha> {
           if (value == null || value.isEmpty) {
             return "Por favor, preencher este campo";
           }
-          print("Value: $value,\n Comp: ${widget.senhaComparacao}");
           if (value.compareTo(widget.senhaComparacao) != 0) {
             return "Confirmação diferente da senha";
           }
@@ -322,6 +321,22 @@ class _InputSenhaState extends State<InputSenha> {
 }
 
 class SelectDropDown extends StatelessWidget {
+  const SelectDropDown({
+    Key? key,
+    required this.controller,
+    this.list = const [],
+    required this.onChange,
+    this.hintText = "",
+    this.margin,
+    this.desabilitado = false,
+    this.unicoNaLinha = true,
+    this.onTap,
+    this.icon = const Icon(Icons.keyboard_arrow_right),
+    this.borderOutlined = false,
+    this.underline = true,
+    this.mostrarLabel = false,
+  }) : super(key: key);
+
   final String controller;
   final String hintText;
   final List list;
@@ -336,22 +351,6 @@ class SelectDropDown extends StatelessWidget {
 
   ///informe somente se optar pelo [borderOutlineD: false]
   final bool underline;
-
-  const SelectDropDown({
-    Key? key,
-    required this.controller,
-    required this.list,
-    required this.onChange,
-    this.hintText = "",
-    this.margin,
-    this.desabilitado = false,
-    this.unicoNaLinha = true,
-    this.onTap,
-    this.icon = const Icon(Icons.keyboard_arrow_right),
-    this.borderOutlined = false,
-    this.underline = true,
-    this.mostrarLabel = false,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -429,37 +428,30 @@ class SelectDropDown extends StatelessWidget {
             );
           }).toList();
         },
-        items: list != null
-            ? list
-                .map((value) => value is Map
-                    ? (value["nome"] ?? value["Nome"]) +
-                        "--${value["id"] != null ? value["id"] : value["ID"] != null ? value["ID"] : value["Id"]}"
-                    : value + "--0")
-                .map<DropdownMenuItem<String>>((value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: MaterialColors.muted.withOpacity(0.5),
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                    child: SimpleText(
-                      value.split("--")[0],
-                    ),
+        items: list
+            .map((value) => value is Map
+                ? (value["nome"] ?? value["Nome"]) +
+                    "--${value["id"] ?? value["ID"] ?? value["Id"]}"
+                : value + "--0")
+            .map<DropdownMenuItem<String>>((value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 4),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: MaterialColors.muted.withOpacity(0.5),
+                    width: 1,
                   ),
-                );
-              }).toList()
-            : [].map<DropdownMenuItem<String>>((value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+                ),
+              ),
+              child: SimpleText(
+                value.split("--")[0],
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:transparencia_gov_ce/widgets/typography.dart';
 
 class LoadingScreen extends StatelessWidget {
-  final String message;
-
   const LoadingScreen({
     Key? key,
     this.message = 'Carregando ...',
   }) : super(key: key);
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {

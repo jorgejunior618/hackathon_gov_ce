@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SimpleText extends StatelessWidget {
-  final String _text;
-  final double textSize;
-  final TextAlign textAlign;
-  final Color textColor;
-
   const SimpleText(
     this._text, {
     Key? key,
@@ -13,6 +8,11 @@ class SimpleText extends StatelessWidget {
     this.textAlign = TextAlign.left,
     this.textColor = Colors.black,
   }) : super(key: key);
+
+  final String _text;
+  final double textSize;
+  final TextAlign textAlign;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,6 @@ class SimpleText extends StatelessWidget {
 }
 
 class SimpleTextBold extends StatelessWidget {
-  final String _text;
-  final double textSize;
-  final TextAlign textAlign;
-  final Color textColor;
-
   const SimpleTextBold(
     this._text, {
     Key? key,
@@ -41,6 +36,11 @@ class SimpleTextBold extends StatelessWidget {
     this.textAlign = TextAlign.left,
     this.textColor = Colors.black,
   }) : super(key: key);
+
+  final String _text;
+  final double textSize;
+  final TextAlign textAlign;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
