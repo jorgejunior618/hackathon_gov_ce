@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transparencia_gov_ce/screens/home.dart';
+import 'package:transparencia_gov_ce/screens/home/home.dart';
 import 'package:transparencia_gov_ce/screens/routing_problem.dart';
 
 Map<String, WidgetBuilder> appRoutes(BuildContext context) {
