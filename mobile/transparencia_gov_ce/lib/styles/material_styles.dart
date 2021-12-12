@@ -1,18 +1,12 @@
 import 'dart:ui' show Color;
 
 class MaterialColors {
-  static const Color active = Color.fromRGBO(0, 188, 212, 1.0);
-  static const Color border = Color.fromRGBO(231, 231, 231, 1.0);
-  static const Color bgColorScreen = Color.fromRGBO(6, 111, 50, 1.0);
-  static const Color defaultButton = Color.fromRGBO(220, 220, 220, 1.0);
-  static const Color error = Color.fromRGBO(244, 67, 54, 1.0);
-  static const Color input = Color.fromRGBO(220, 220, 220, 1.0);
-  static const Color muted = Color.fromRGBO(100, 100, 100, 1);
-  static const Color primary = Color.fromRGBO(0, 168, 74, 1.0);
-  static const Color success = Color.fromRGBO(76, 175, 80, 1.0);
-  static const Color socialFacebook = Color.fromRGBO(59, 89, 152, 1.0);
-  static const Color socialTwitter = Color.fromRGBO(91, 192, 222, 1.0);
-  static const Color warning = Color.fromRGBO(255, 152, 0, 1.0);
-  static const Color whatsApp = Color.fromRGBO(34, 152, 23, 1.0);
-  static const Color telegram = Color.fromRGBO(42, 151, 229, 1.0);
+  static const Color bgColorScreen = Color.fromRGBO(243, 243, 243, 1.0);
+  static const Color selectedItem = Color.fromRGBO(251, 107, 50, 1.0);
+  static const Color highlightItem = Color.fromRGBO(254, 89, 24, 1.0);
+  static const Color primary = Color.fromRGBO(59, 129, 47, 1.0);
+  static const Color muted = Color.fromRGBO(128, 128, 128, 1.0);
+  static const Color success = Color.fromRGBO(87, 176, 71, 1.0);
+  static const Color error = Color.fromRGBO(210, 9, 17, 1.0);
+  static const Color white = Color.fromRGBO(255, 255, 255, 1.0);
 }

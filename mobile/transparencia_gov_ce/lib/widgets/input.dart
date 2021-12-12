@@ -24,7 +24,7 @@ class Input extends StatelessWidget {
     this.onChanged,
     this.outlineBorder = false,
     this.autofocus = false,
-    this.borderColor = MaterialColors.border,
+    this.borderColor = MaterialColors.highlightItem,
     this.inputMask,
     required this.controller,
     this.validator,

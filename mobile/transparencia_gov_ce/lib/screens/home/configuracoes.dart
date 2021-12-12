@@ -11,6 +11,7 @@ class Noticias extends StatelessWidget {
   Widget build(BuildContext context) {
     const titulo =
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
+    const tag = 'saúde';
 
     const List<Map<String, dynamic>> _noticias = [
       {
