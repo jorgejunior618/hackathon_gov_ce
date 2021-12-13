@@ -10,24 +10,29 @@ class MenuDados extends StatelessWidget {
 
   static const List listaTiposDados = [
     TipoDado(
-      "Notas de empenho",
-      'lib/assets/notas_empenho.png',
-    ),
-    TipoDado(
       "Servidores Públicos",
       'lib/assets/servidores.png',
+      '/servidoresPublicos',
+    ),
+    TipoDado(
+      "Notas de empenho",
+      'lib/assets/notas_empenho.png',
+      '/emConstrucao',
     ),
     TipoDado(
       "Contratos e Convenios",
       'lib/assets/contratos_conv.png',
+      '/emConstrucao',
     ),
     TipoDado(
       "Obras públicas",
       'lib/assets/obras.png',
+      '/emConstrucao',
     ),
     TipoDado(
       "Combate ao Covid-19",
       'lib/assets/covid.png',
+      '/emConstrucao',
     ),
   ];
 
@@ -61,6 +66,7 @@ class MenuDados extends StatelessWidget {
               return CardItemDados(
                 titulo: dado.descricao,
                 urlImagem: dado.imagem,
+                urlRedirecionamento: dado.url,
               );
             }).toList(),
           ),
@@ -75,10 +81,12 @@ class CardItemDados extends StatelessWidget {
     Key? key,
     required this.titulo,
     required this.urlImagem,
+    required this.urlRedirecionamento,
   }) : super(key: key);
 
   final String titulo;
   final String urlImagem;
+  final String urlRedirecionamento;
 
   @override
   Widget build(BuildContext context) {
@@ -93,22 +101,14 @@ class CardItemDados extends StatelessWidget {
         type: MaterialType.transparency,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
         child: InkWell(
-          onTap: () {},
-          child: Container(
-            decoration: const BoxDecoration(
-              // borderRadius: BorderRadius.circular(9),
-              border: Border(
-                bottom: BorderSide(
-                  color: MaterialColors.highlightItem,
-                  width: 8.0,
-                ),
-              ),
-            ),
+          onTap: () {
+            Navigator.of(context).pushNamed(urlRedirecionamento, arguments: {
+              'title': titulo,
+            });
+          },
+          child: Padding(
             padding: const EdgeInsets.only(
               top: 10,
-              bottom: 2,
-              left: 5,
-              right: 5,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -116,19 +116,46 @@ class CardItemDados extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
+                  padding: const EdgeInsets.only(
+                    bottom: 15.0,
+                    left: 5,
+                    right: 5,
+                  ),
                   child: Image.asset(
                     urlImagem,
                     width: 68,
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                  child: SimpleText(
-                    titulo,
-                    textSize: 17.0,
-                    textAlign: TextAlign.center,
-                    fontStyle: CustomTextStyle.subtitle,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                    right: 5,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                    ),
+                    child: SizedBox(
+                      height: 50,
+                      child: SimpleText(
+                        titulo,
+                        textSize: 17.0,
+                        textAlign: TextAlign.center,
+                        fontStyle: CustomTextStyle.subtitle,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.maxFinite,
+                  height: 8,
+                  margin: const EdgeInsets.only(top: 2),
+                  decoration: const BoxDecoration(
+                    color: MaterialColors.highlightItem,
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(9),
+                    ),
                   ),
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:easy_mask/easy_mask.dart';
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
@@ -320,33 +321,23 @@ class _InputSenhaState extends State<InputSenha> {
   }
 }
 
-class SelectDropDown extends StatelessWidget {
-  const SelectDropDown({
+class SearchSelectDropdown extends StatelessWidget {
+  const SearchSelectDropdown({
     Key? key,
-    required this.controller,
-    this.list = const [],
+    required this.list,
     required this.onChange,
-    this.hintText = "",
-    this.margin,
+    this.hintText = '',
+    this.margin = const EdgeInsets.all(0),
     this.desabilitado = false,
-    this.unicoNaLinha = true,
-    this.onTap,
-    this.icon = const Icon(Icons.keyboard_arrow_right),
     this.borderOutlined = false,
     this.underline = true,
-    this.mostrarLabel = false,
   }) : super(key: key);
 
-  final String controller;
   final String hintText;
   final List list;
   final Function(String? newValue)? onChange;
-  final Function()? onTap;
-  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry margin;
   final bool desabilitado;
-  final bool unicoNaLinha;
-  final bool mostrarLabel;
-  final Icon icon;
   final bool borderOutlined;
 
   ///informe somente se optar pelo [borderOutlineD: false]
@@ -354,105 +345,27 @@ class SelectDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin ?? const EdgeInsets.only(top: 8, bottom: 4),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(
-        color: desabilitado ? Colors.grey.withOpacity(0.2) : Colors.transparent,
-        borderRadius: borderOutlined ? BorderRadius.circular(4) : null,
-        border: borderOutlined
-            ? Border.all(color: MaterialColors.muted)
-            : underline
-                ? const Border(bottom: BorderSide())
-                : null,
+    return DropdownSearch<String>(
+      dropdownSearchDecoration: InputDecoration(
+        hintText: hintText,
+        contentPadding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
       ),
-      child: DropdownButton<String>(
-        value: controller,
-        onTap: onTap ?? () {},
-        icon: icon,
-        iconSize: 24,
-        elevation: 16,
-        focusColor: MaterialColors.primary,
-        hint: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              hintText,
-              style: TextStyle(
-                color: desabilitado
-                    ? MaterialColors.muted
-                    : Colors.black.withOpacity(0.6),
-              ),
-            ),
-          ),
-        ),
-        isExpanded: unicoNaLinha,
-        underline: Container(
-          height: 0,
-          padding: const EdgeInsets.all(0),
-          margin: const EdgeInsets.all(0),
-        ),
-        onChanged: onChange,
-        selectedItemBuilder: (BuildContext context) {
-          return list
-              .map((value) =>
-                  value is Map ? value["nome"] ?? value["Nome"] : value)
-              .map<Widget>((item) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (mostrarLabel)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 4.0),
-                      child: SimpleText(
-                        hintText,
-                        textSize: 12,
-                        textColor: MaterialColors.muted,
-                      ),
-                    ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.only(bottom: mostrarLabel ? 8.0 : 0.0),
-                    child: SimpleTextBold(
-                      item,
-                      textColor: MaterialColors.primary,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }).toList();
-        },
-        items: list
-            .map((value) => value is Map
-                ? (value["nome"] ?? value["Nome"]) +
-                    "--${value["id"] ?? value["ID"] ?? value["Id"]}"
-                : value + "--0")
-            .map<DropdownMenuItem<String>>((value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 4),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: MaterialColors.muted.withOpacity(0.5),
-                    width: 1,
-                  ),
-                ),
-              ),
-              child: SimpleText(
-                value.split("--")[0],
-              ),
-            ),
-          );
-        }).toList(),
-      ),
+      mode: Mode.BOTTOM_SHEET,
+      showSearchBox: true,
+      showSelectedItems: false,
+      dropDownButton: const Icon(Icons.search),
+      onChanged: (String? value) {
+        onChange!(value);
+      },
+      itemAsString: (String? value) => value!.split('--')[0],
+      items: list
+          .map((value) => value is Map
+              ? (value['nome'] ?? value['Nome']) +
+                  '--${value['id'] ?? value['ID'] ?? value['Id']}'
+              : value + '--0')
+          .map<String>((value) {
+        return value;
+      }).toList(),
     );
   }
 }

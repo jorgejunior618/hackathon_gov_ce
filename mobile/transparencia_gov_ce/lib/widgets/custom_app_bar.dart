@@ -40,7 +40,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               type: MaterialType.transparency,
               child: InkWell(
                 borderRadius: BorderRadius.circular(50),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
                 child: const Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Icon(

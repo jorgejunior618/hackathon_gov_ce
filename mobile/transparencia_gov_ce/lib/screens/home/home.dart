@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:transparencia_gov_ce/screens/home/configuracoes.dart';
 import 'package:transparencia_gov_ce/screens/home/menu_selecao_dados.dart';
 import 'package:transparencia_gov_ce/screens/home/noticias.dart';
 import 'package:transparencia_gov_ce/styles/material_styles.dart';
@@ -16,12 +17,20 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+class ItemNavegacao {
+  const ItemNavegacao(this.titulo, this.tela);
+
+  final String titulo;
+  final Widget tela;
+}
+
 class _HomeState extends State<Home> {
   int _abaSelecionada = 0;
 
-  static const List<Widget> _abas = <Widget>[
-    Noticias(),
-    MenuDados(),
+  static const List<ItemNavegacao> _abas = <ItemNavegacao>[
+    ItemNavegacao("Notícias", Noticias()),
+    ItemNavegacao("Transparência", MenuDados()),
+    ItemNavegacao("Configurações", ConfiguracoesApp()),
   ];
 
   void _selecionarAba(int index) {
@@ -34,16 +43,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MaterialColors.bgColorScreen,
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         backgroundColor: MaterialColors.primary,
         title: SimpleTextBold(
-          'Notícias',
+          _abas.elementAt(_abaSelecionada).titulo,
           textColor: MaterialColors.white,
           textSize: 17.0,
         ),
       ),
       body: Center(
-        child: _abas.elementAt(_abaSelecionada),
+        child: _abas.elementAt(_abaSelecionada).tela,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
