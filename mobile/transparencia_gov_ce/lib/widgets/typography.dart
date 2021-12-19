@@ -46,6 +46,7 @@ class SimpleText extends StatelessWidget {
         color: textColor,
         fontSize: textSize,
         fontFamily: fontFamily,
+        height: 1.4,
       ),
     );
   }
