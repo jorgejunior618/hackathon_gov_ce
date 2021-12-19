@@ -29,10 +29,7 @@ class ServidoresPublicos extends StatelessWidget {
           textSize: 17.0,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 10.0),
-        child: ConteudoServidores(),
-      ),
+      body: ConteudoServidores(),
     );
   }
 }
@@ -45,85 +42,88 @@ class ConteudoServidores extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(bottom: 12.0, left: 22.0, right: 22.0),
-            child: SimpleText(
-              'Informações sobre a remuneração dos servidores públicos',
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(bottom: 12.0, left: 22.0, right: 22.0),
+              child: SimpleText(
+                'Informações sobre a remuneração dos servidores públicos',
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(right: 18.0),
-            reverse: true,
-            child: Row(
-              children: [
-                for (int i = 2014; i <= 2021; i++)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: Material(
-                      type: MaterialType.card,
-                      color: i == 2021
-                          ? MaterialColors.selectedItem
-                          : MaterialColors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 4.0,
-                          horizontal: 22.0,
-                        ),
-                        child: SimpleText(
-                          '$i',
-                          textSize: 22,
-                          textColor:
-                              i == 2021 ? MaterialColors.white : Colors.black,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(right: 18.0),
+              reverse: true,
+              child: Row(
+                children: [
+                  for (int i = 2014; i <= 2021; i++)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: Material(
+                        type: MaterialType.card,
+                        color: i == 2021
+                            ? MaterialColors.selectedItem
+                            : MaterialColors.white,
+                        borderRadius: BorderRadius.circular(50),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 4.0,
+                            horizontal: 22.0,
+                          ),
+                          child: SimpleText(
+                            '$i',
+                            textSize: 22,
+                            textColor:
+                                i == 2021 ? MaterialColors.white : Colors.black,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(22, 10, 22, 22),
-            child: Material(
-              type: MaterialType.card,
-              borderRadius: BorderRadius.circular(9),
-              elevation: 2,
-              child: Container(
-                padding: const EdgeInsets.all(18),
-                width: double.maxFinite,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SimpleText(
-                      'Total Gasto',
-                      textSize: 14,
-                      textColor: MaterialColors.muted,
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    SimpleText(
-                      'R\$ 32.004.060,40',
-                      textSize: 32,
-                    ),
-                  ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(22, 10, 22, 22),
+              child: Material(
+                type: MaterialType.card,
+                borderRadius: BorderRadius.circular(9),
+                elevation: 2,
+                child: Container(
+                  padding: const EdgeInsets.all(18),
+                  width: double.maxFinite,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      SimpleText(
+                        'Total Gasto',
+                        textSize: 14,
+                        textColor: MaterialColors.muted,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      SimpleText(
+                        'R\$ 32.004.060,40',
+                        textSize: 32,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(22, 0, 22, 12),
-            child: SimpleText(
-              'Clique em um mês para mais detalhes',
+            const Padding(
+              padding: EdgeInsets.fromLTRB(22, 0, 22, 12),
+              child: SimpleText(
+                'Clique em um mês para mais detalhes',
+              ),
             ),
-          ),
-          const GastosMensais(),
-        ],
+            const GastosMensais(),
+          ],
+        ),
       ),
     );
   }

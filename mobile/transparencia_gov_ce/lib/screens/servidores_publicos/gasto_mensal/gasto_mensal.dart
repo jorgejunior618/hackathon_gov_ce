@@ -25,10 +25,7 @@ class GastosMensaisServidores extends StatelessWidget {
           textSize: 17.0,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 10.0),
-        child: ConteudoGastoServidores(arguments: arguments),
-      ),
+      body: ConteudoGastoServidores(arguments: arguments),
     );
   }
 }
@@ -44,53 +41,56 @@ class ConteudoGastoServidores extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(22.0, 0, 22, 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SimpleTextBold(
-                  arguments!['periodo'],
-                  textSize: 16,
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(22.0, 0, 22, 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SimpleTextBold(
+                    arguments!['periodo'],
+                    textSize: 16,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(22, 10, 22, 22),
-            child: Material(
-              type: MaterialType.card,
-              borderRadius: BorderRadius.circular(9),
-              elevation: 2,
-              child: Container(
-                padding: const EdgeInsets.all(18),
-                width: double.maxFinite,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SimpleText(
-                      'Total Gasto',
-                      textSize: 14,
-                      textColor: MaterialColors.muted,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    SimpleText(
-                      arguments!['totalGasto'],
-                      textSize: 32,
-                    ),
-                  ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(22, 10, 22, 22),
+              child: Material(
+                type: MaterialType.card,
+                borderRadius: BorderRadius.circular(9),
+                elevation: 2,
+                child: Container(
+                  padding: const EdgeInsets.all(18),
+                  width: double.maxFinite,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SimpleText(
+                        'Total Gasto',
+                        textSize: 14,
+                        textColor: MaterialColors.muted,
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      SimpleText(
+                        arguments!['totalGasto'],
+                        textSize: 32,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          const Servidores(),
-        ],
+            const Servidores(),
+          ],
+        ),
       ),
     );
   }
@@ -273,7 +273,8 @@ class CardServidor extends StatelessWidget {
     return Column(
       children: [
         ExpansionTile(
-          tilePadding: EdgeInsets.fromLTRB(0, 4, 0, 4),
+          tilePadding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+          childrenPadding: const EdgeInsets.only(left: 20),
           title: SimpleTextBold(servidor.nome),
           subtitle: SimpleText(
             servidor.gasto,

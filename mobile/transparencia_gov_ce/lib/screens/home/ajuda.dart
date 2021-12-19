@@ -67,6 +67,8 @@ class ItemQuestao extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.card,
+      borderRadius: BorderRadius.circular(9),
+      elevation: 2,
       child: ExpansionTile(
         childrenPadding: const EdgeInsets.fromLTRB(18.0, 0.0, 18.0, 14.0),
         tilePadding: const EdgeInsets.fromLTRB(18.0, 8.0, 18.0, 8.0),
