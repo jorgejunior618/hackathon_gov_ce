@@ -18,7 +18,7 @@ class ConfiguracoesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(22, 30, 22, 10),
+      padding: const EdgeInsets.fromLTRB(22, 15, 22, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

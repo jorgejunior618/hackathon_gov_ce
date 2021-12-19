@@ -66,7 +66,7 @@ class Noticias extends StatelessWidget {
         padding: const EdgeInsets.only(
           left: 14.0,
           right: 14.0,
-          top: 14.0,
+          top: 15.0,
         ),
         child: Column(
           children: [
