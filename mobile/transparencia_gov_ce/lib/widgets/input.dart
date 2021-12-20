@@ -1,9 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:easy_mask/easy_mask.dart';
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:transparencia_gov_ce/styles/material_styles.dart";
-import "package:transparencia_gov_ce/widgets/typography.dart";
 
 class Input extends StatelessWidget {
   const Input({

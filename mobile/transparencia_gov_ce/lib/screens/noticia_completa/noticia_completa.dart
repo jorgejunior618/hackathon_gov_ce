@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transparencia_gov_ce/models/noticia.dart';
 import 'package:transparencia_gov_ce/styles/material_styles.dart';
 import 'package:transparencia_gov_ce/widgets/custom_app_bar.dart';
